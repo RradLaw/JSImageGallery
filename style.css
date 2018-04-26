@@ -1,0 +1,29 @@
+.pics {
+	height: 156px;
+	width: 156px;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	background-color: #eee;
+	position: relative;
+	vertical-align: middle;
+	display: table-cell;
+	text-align: center;
+	cursor: pointer;
+}
+
+.pics:hover {
+	background-color: #E2E0D8;
+}
+
+.pics img {
+	border: 1px solid #000000 !important;
+	float: center !important;
+	display: inline-block;
+	margin-top: 14px;
+}
+
+.img {
+		float: left;
+}
