@@ -17,8 +17,8 @@ let imageJSON = {
                                         "title": "club1",
                                         "location": "images/",
                                         "images": [
-                                            "1.jpg",
-                                            "2.jpg"
+                                            "1",
+                                            "2"
                                         ]
                                     }
                                 ]
@@ -40,5 +40,6 @@ let imageJSON = {
                     ]
             },
         ],
-    "webDir": ""
+    "webDir": "",
+    "imgExt": ".jpg"
 };

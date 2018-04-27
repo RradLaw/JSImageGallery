@@ -5,7 +5,18 @@
 
     </title>
     <script type="text/javascript" src="images.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <!--Disables rightclick and dragging images (to stop image stealing)
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            $('img').on('dragstart', function (event) { event.preventDefault(); });
+            $(document).bind("contextmenu", function (e) {
+                return false;
+            });
+        }); 
+    </script>
+    <!---->
 </head>
 
 <body>
@@ -47,7 +58,7 @@
                 }
             } else {
                 for (let i = 0; i < tag.images.length; i++) {
-                    document.getElementById('imgGrid').innerHTML += `<div class="pics img" onclick=""><img src="${imageJSON.webDir}${tag.location}${tag.images[i]}"></div>`;
+                    document.getElementById('imgGrid').innerHTML += `<div class="pics img" onclick="openImage(${i})"><img src="${imageJSON.webDir}${tag.location}/thumb/${tag.images[i]}${imageJSON.imgExt}"></div>`;
                 }
             }
         }
@@ -69,6 +80,17 @@
 
         function clearGrid() {
             document.getElementById('imgGrid').innerHTML = '';
+        }
+
+        function openImage(img) {
+            clearGrid();
+
+            let tag = imageJSON;
+            for (let i = 0; i < depth.length; i++) {
+                tag = tag.subfolder[depth[i]];
+            }
+            document.getElementById('imgGrid').innerHTML = `<center><img src="${imageJSON.webDir}${tag.location}/large/${tag.images[img]}${imageJSON.imgExt}"><br>${tag.images[img]}</center>`;
+
         }
 
     </script>
