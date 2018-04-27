@@ -1,5 +1,5 @@
 let imageJSON = {
-    "compName": "aaaa",
+    "compName": "Competition Name",
     "code": "18XD",
     "subfolder":
         [

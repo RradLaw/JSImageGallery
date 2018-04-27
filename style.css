@@ -27,3 +27,8 @@
 .img {
 		float: left;
 }
+
+#breadcrumbs {
+	color: blue;
+	cursor: pointer;
+}

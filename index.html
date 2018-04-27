@@ -15,16 +15,22 @@
     <hr>
     <h3>
         <span id="breadcrumbs">
-            <span onclick="">Home > </span>
         </span>
     </h3>
     <div id="imgGrid" style="position:center;"></div>
 
     <script>
         let depth = [];
-        document.getElementById('titleSpan').innerHTML = imageJSON.compName;
-        for (let i = 0; i < imageJSON.subfolder.length; i++) {
-            document.getElementById('imgGrid').innerHTML += `<div class="pics" onclick="addDepth(${i});"><h2>${imageJSON.subfolder[i].title}</h2>${imageJSON.subfolder[i].subtitle}</div>`;
+        init();
+
+        function init() {
+            depth = [];
+            clearGrid();
+            document.getElementById('titleSpan').innerHTML = imageJSON.compName;
+            for (let i = 0; i < imageJSON.subfolder.length; i++) {
+                document.getElementById('imgGrid').innerHTML += `<div class="pics" onclick="addDepth(${i});"><h2>${imageJSON.subfolder[i].title}</h2>${imageJSON.subfolder[i].subtitle}</div>`;
+            }
+            document.getElementById('breadcrumbs').innerHTML = '<span onclick="diveDepth(-1)">Home > </span>';
         }
 
         function addDepth(d) {
@@ -33,8 +39,8 @@
             for (let i = 0; i < depth.length; i++) {
                 tag = tag.subfolder[depth[i]];
             }
-            document.getElementById('breadcrumbs').innerHTML += `<span onclick="">${tag.title} > </span>`;
-            document.getElementById('imgGrid').innerHTML = '';
+            document.getElementById('breadcrumbs').innerHTML += `<span onclick="diveDepth(${depth.length - 1})">${tag.title} > </span>`;
+            clearGrid();
             if (tag.subfolder) {
                 for (let i = 0; i < tag.subfolder.length; i++) {
                     document.getElementById('imgGrid').innerHTML += `<div class="pics" onclick="addDepth(${i});"><h2>${tag.subfolder[i].title}</h2>${tag.subfolder[i].subtitle}</div>`;
@@ -47,7 +53,22 @@
         }
 
         function diveDepth(d) {
+            if (d < 0) {
+                init();
+            } else {
+                depth.length = d + 1;
+                let tag = imageJSON;
+                document.getElementById('breadcrumbs').innerHTML = '<span onclick="diveDepth(-1)">Home > </span>';
+                for (let i = 0; i < d; i++) {
+                    tag = tag.subfolder[depth[i]];
+                    document.getElementById('breadcrumbs').innerHTML += `<span onclick="diveDepth(${i})">${tag.title} > </span>`;
+                }
+                addDepth(depth.pop());
+            }
+        }
 
+        function clearGrid() {
+            document.getElementById('imgGrid').innerHTML = '';
         }
 
     </script>
