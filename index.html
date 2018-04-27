@@ -33,6 +33,7 @@
     <script>
         let depth = [];
         init();
+        let imgPointer = 0;
 
         function init() {
             depth = [];
@@ -89,7 +90,25 @@
             for (let i = 0; i < depth.length; i++) {
                 tag = tag.subfolder[depth[i]];
             }
+
+            if (img < 0) img = 0;
+            if (img > tag.images.length - 1) img = tag.images.length - 1;
+
             document.getElementById('imgGrid').innerHTML = `<center><img src="${imageJSON.webDir}${tag.location}/large/${tag.images[img]}${imageJSON.imgExt}"><br>${tag.images[img]}</center>`;
+            imgPointer = img;
+        }
+        document.onkeydown = checkKey;
+
+        function checkKey(e) {
+            e = e || window.event;
+            if (e.keyCode == '37') {
+                // left arrow
+                openImage(--imgPointer);
+            }
+            else if (e.keyCode == '39') {
+                // right arrow
+                openImage(++imgPointer);
+            }
 
         }
 
