@@ -15,22 +15,41 @@
     <hr>
     <h3>
         <span id="breadcrumbs">
-
+            <span onclick="">Home > </span>
         </span>
     </h3>
-    <div style="position:center;">
-        <div class="pics img">
-            <img src="images/1.jpg">
-        </div>
-        <div class="pics">
-            <h2>aaa</h2>
-        </div>
-    </div>
+    <div id="imgGrid" style="position:center;"></div>
 
     <script>
+        let depth = [];
         document.getElementById('titleSpan').innerHTML = imageJSON.compName;
+        for (let i = 0; i < imageJSON.subfolder.length; i++) {
+            document.getElementById('imgGrid').innerHTML += `<div class="pics" onclick="addDepth(${i});"><h2>${imageJSON.subfolder[i].title}</h2>${imageJSON.subfolder[i].subtitle}</div>`;
+        }
 
-        //document.title = imageJSON.code + " - Debra Anne Creations";
+        function addDepth(d) {
+            depth.push(d);
+            let tag = imageJSON;
+            for (let i = 0; i < depth.length; i++) {
+                tag = tag.subfolder[depth[i]];
+            }
+            document.getElementById('breadcrumbs').innerHTML += `<span onclick="">${tag.title} > </span>`;
+            document.getElementById('imgGrid').innerHTML = '';
+            if (tag.subfolder) {
+                for (let i = 0; i < tag.subfolder.length; i++) {
+                    document.getElementById('imgGrid').innerHTML += `<div class="pics" onclick="addDepth(${i});"><h2>${tag.subfolder[i].title}</h2>${tag.subfolder[i].subtitle}</div>`;
+                }
+            } else {
+                for (let i = 0; i < tag.images.length; i++) {
+                    document.getElementById('imgGrid').innerHTML += `<div class="pics img" onclick=""><img src="${imageJSON.webDir}${tag.location}${tag.images[i]}"></div>`;
+                }
+            }
+        }
+
+        function diveDepth(d) {
+
+        }
+
     </script>
 </body>
 

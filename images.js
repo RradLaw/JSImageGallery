@@ -1,7 +1,7 @@
 let imageJSON = {
-    "compName": "aaa",
+    "compName": "aaaa",
     "code": "18XD",
-    "sessions":
+    "subfolder":
         [
             {
                 "title": "Session 1",
@@ -9,18 +9,36 @@ let imageJSON = {
                 "subfolder":
                     [
                         {
-                            "title": "club1",
+                            "title": "Session 1 inner",
+                            "subtitle": "Level 3",
+                            "subfolder":
+                                [
+                                    {
+                                        "title": "club1",
+                                        "location": "images/",
+                                        "images": [
+                                            "1.jpg",
+                                            "2.jpg"
+                                        ]
+                                    }
+                                ]
+                        }
+                    ]
+            },
+            {
+                "title": "Session 2",
+                "subtitle": "Level 4",
+                "subfolder":
+                    [
+                        {
+                            "title": "club2",
                             "images": [
                                 "1.jpg",
                                 "2.jpg"
                             ]
                         }
                     ]
-                /*"images": [
-                    "1.jpg",
-                    "2.jpg"
-                ]*/
-            }
+            },
         ],
-    "imageLocation": "images/"
+    "webDir": ""
 };
