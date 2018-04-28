@@ -34,11 +34,22 @@ async function nestedSearch(dir, p) {
         for (let i = 0; i < files.length; i++) {
             if (files[i] === "thumb") {
                 let imgArr = [];
-                await fs.readdir(`${dir}/${files[i]}`, function (err, f) {
-                    for (let i = 0; i < f.length; i++) {
-                        imgArr.push(f[i]);
+                await fs.readdir(`${dir}/${files[i]}/`, function (err, f) {
+                    if (f) {
+                        for (let i = 0; i < f.length; i++) {
+                            imgArr.push(f[i]);
+                        }
+
+                        let data = JSON.stringify(imgArr, null, 2);
+                        fs.writeFile('imageJSON-2.json', data, (err) => {
+                            if (err) throw err;
+                            console.log('Data written to file');
+                        });
                     }
                 });
+
+
+
                 p.push({ "title": files[i], "subtitle": "", "images": imgArr });
 
             } else {

@@ -40,7 +40,7 @@
             clearGrid();
             document.getElementById('titleSpan').innerHTML = imageJSON.compName;
             for (let i = 0; i < imageJSON.subfolder.length; i++) {
-                document.getElementById('imgGrid').innerHTML += `<div class="pics" onclick="addDepth(${i});"><h2>${imageJSON.subfolder[i].title}</h2>${imageJSON.subfolder[i].subtitle}</div>`;
+                document.getElementById('imgGrid').innerHTML += `<div class="pics" onclick="addDepth(${i});"><h2>${imageJSON.subfolder[i].title}</h2>${imageJSON.subfolder[i].subtitle ? imageJSON.subfolder[i].subtitle : ''}</div>`;
             }
             document.getElementById('breadcrumbs').innerHTML = '<span onclick="diveDepth(-1)">Home > </span>';
         }
