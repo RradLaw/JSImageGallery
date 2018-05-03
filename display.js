@@ -63,7 +63,6 @@ function openImage(img) {
 
     if (img < 0) img = 0;
     if (img > tag.images.length - 1) img = tag.images.length - 1;
-
     document.getElementById('imgGrid').innerHTML = `<center><img class="largeImage" src="${imageJSON.webDir}${tag.location}/large/${tag.images[img]}${imageJSON.imgExt}"><br>${tag.images[img]}<br><span class="link" onclick="openImage(--imgPointer)">Previous</span>&nbsp;<span class="link" onclick="openImage(++imgPointer)">Next</span><br><span class="link" onclick="diveDepth(depthPointer)">Back</span></center>`;
     imgPointer = img;
 }
