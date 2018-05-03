@@ -28,7 +28,11 @@
 		float: left;
 }
 
-#breadcrumbs {
+.link {
 	color: blue;
 	cursor: pointer;
+}
+
+.largeImage {
+	height:400px;
 }
