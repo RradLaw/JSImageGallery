@@ -29,7 +29,17 @@ function main() {
 
 function nestedSearch(dir, p, dirend) {
     let files = fs.readdirSync(dir);
-
+    files.sort(function (a, b) {
+        if (a === "presentations" || a === "Presentations") {
+            return true;
+        } else if (b === "presentations" || b === "Presentations") {
+            return false;
+        } else if (a.substr(0, 7) === "gymnast" && b.substr(0, 7) === "gymnast") {
+            return a.substr(7) - b.substr(7)
+        } else {
+            return a > b;
+        }
+    });
     for (let i = 0; i < files.length; i++) {
         if (files[i] === "thumb") {
             let imgArr = [];
