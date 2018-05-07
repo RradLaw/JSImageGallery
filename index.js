@@ -20,7 +20,7 @@ function main() {
     setTimeout(function () {
         let data = JSON.stringify(imageJSON, null, 2);
 
-        fs.writeFile('imageJSON-3.json', data, (err) => {
+        fs.writeFile('imageJSON.json', data, (err) => {
             if (err) throw err;
             console.log('Data written to file');
         });
